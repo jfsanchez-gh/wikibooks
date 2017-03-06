@@ -1,0 +1,24 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Tag::{{ tag.title }}{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+
+	<div class="row">
+		<h2><i class="glyphicon glyphicon-tags"> {{tag}}</i></h2>
+		<div class="row marketing">
+			<div class="col-md-12">
+			    {% include "app/book/list.html" %}
+			</div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

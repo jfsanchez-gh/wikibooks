@@ -1,0 +1,22 @@
+Hello,
+your email address was used for register a user in <a href="http://www.share.herokuapp.com" title="web site">Share!</a>.
+
+Registration details:
+<ul>
+	<li>Username: {{ user.username }}</li>
+	<li>Email: {{ user.email }}</li>
+	{% if user.first_name %}
+		<li>First name: {{ user.first_name }}</li>
+	{% endif %}
+	{% if user.last_name %}
+		<li>Last name: {{ user.last_name }}</li>
+	{% endif %}
+</ul>
+
+If this information is related to you, pleas click the following link to
+activate your subscription immediately:
+<a href="{% url 'user_activate' token %}" title="">{{ token }}</a>
+(If the link above does not appear clickable or does not open a browser
+window when you click it, copy it and paste it into your web browser's
+location bar.)
+or denunciate it contacting us: <a href="{% url 'contact' %}" title="">Contact Us</a>

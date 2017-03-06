@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+    	<strong>Comment this book</strong>
+	</h1>
+  </div>
+  <div class="panel-body">
+  	{% if user.is_authenticated %}
+    	<form role="form" action="{% url 'comment' %}" method="POST">{% csrf_token %}
+    		<input type="hidden" name="book" value="{{ book.pk }}">
+    		<div class="form-group">
+			    <textarea class="form-control" name="content" id="content" placeholder="Enter comment" rows="5"></textarea>
+			</div>
+    		<input class="btn btn-default" type="submit" name="" value="Comment">
+    	</form>
+  {% else %}
+		  <h4>You have to be authenticated for commenting.</h4>
+      <a href="{% url 'user_login' %}?next={% url 'book_details' book.pk %}">
+        <i class="glyphicon glyphicon-log-in"></i>
+        Sign in
+      </a>
+	{% endif %}
+  </div>
+</div>
+

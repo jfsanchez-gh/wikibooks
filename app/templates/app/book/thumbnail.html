@@ -1,0 +1,29 @@
+{% load static %}
+<div class="thumbnail">
+	<a href="{% url 'details_book' book.pk %}" title="{{book.title}}">
+		<img src="{% static "img/cover.jpg" %}" alt="cover" style="width: 250%; height=250%;">
+	</a>
+	<div class="caption">
+		<h3>{{ book.title }}</h3>
+		{% with authors=book.authors.all %}
+				<p>
+				{% if authors.count > 1 %}
+					<strong>Authors: </strong>
+				{% else %}
+					<strong>Author: </strong>
+				{% endif %}
+					{% include "app/book/authors.html" %}
+				</p>
+			{% endwith %}
+		<p>
+			<i class="glyphicon glyphicon-star star-icon"></i>
+			<span class="badge star-text">{{ book.votes }}</span>
+			|
+			<i class="glyphicon glyphicon-download download-icon"></i>
+			<span class="badge download-text">{{ book.downloads }}</span>
+		</p>
+		<p>
+			{% include "app/book/tags.html" %}
+		</p>
+	</div>
+</div>

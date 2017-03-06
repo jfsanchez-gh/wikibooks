@@ -1,0 +1,10 @@
+{% for author in authors %}
+	{% if forloop.last and not forloop.first%}
+		and
+	{% else %}
+		{% if not forloop.first %}
+			,
+		{% endif %}
+	{% endif %}
+	<a href="{% url 'author' author.pk %}" title="{{ author }}">{{ author }}</a>
+{% endfor %}

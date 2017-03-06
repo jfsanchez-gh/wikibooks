@@ -1,0 +1,5 @@
+<i class="glyphicon glyphicon-tags"></i>
+&#27; 
+{% for tag in book.tags.all %}
+	<a href="{% url 'tag' tag.pk %}" title="{{ tag }}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
+{% endfor %}

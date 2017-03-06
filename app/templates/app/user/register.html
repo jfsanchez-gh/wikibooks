@@ -1,0 +1,92 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<form role="form" action="{% url 'user_register' %}" method="POST">{% csrf_token %}
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4>Register a new user</h4>
+						</div>
+						<div class="panel-body">
+							{% if form.username.errors %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="username">Username</label>
+							    <input class="form-control" type="text" id="username" name="username" value="{{request.POST.username}}" placeholder="Username">
+							    {{ form.username.errors }}
+						  	</div>
+						  	{% if form.email.errors %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="email">Email address</label>
+							    <input class="form-control" type="email" id="email" name="email" value="{{request.POST.email}}" placeholder="Email address">
+							    {{ form.email.errors|safe }}
+						  	</div>
+						  	{% if form.password.errors %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="password">Password</label>
+							    <input class="form-control" type="password" id="password" name="password" value="{{request.POST.password}}" placeholder="Password">
+							    {{ form.password.errors|safe }}
+						  	</div>
+						  	{% if form.re_password.errors %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="re_password">Re-password</label>
+							    <input class="form-control" type="password" id="re_password" name="re_password" value="{{request.POST.re_password}}" placeholder="Re-password">
+							    {{ form.re_password.errors|safe }}
+						  	</div>
+						  	{% if errors.first_name %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="first_name">First name</label>
+							    <input class="form-control" type="text" id="first_name" name="first_name" value="{{request.POST.first_name}}" placeholder="First name">
+						  	</div>
+						  	{% if errors.last_name %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="last_name">Last name</label>
+							    <input class="form-control" type="text" id="last_name" name="last_name" value="{{request.POST.last_name}}" placeholder="Last name">
+						  	</div>
+						  	<hr>
+						  	<div class="form-group pull-right">
+						  		<a href="{% url 'index' %}" class="btn btn-default" data-dismiss="modal">
+						  			Cancel
+					  			</a>
+								<button type="submit" class="btn btn-success" id="cmd_share" >
+									Register
+								</button>
+						  	</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</form>
+		</div>
+	</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

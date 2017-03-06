@@ -1,0 +1,22 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Tags{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+
+	<div class="row">
+		<h2><i class="glyphicon glyphicon-tags"> Tags</i></h2>
+		{% for tag in tags %}
+			<a href="{% url 'tag' tag.pk %}" title="{{ tag }}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
+		{% endfor %}
+	</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

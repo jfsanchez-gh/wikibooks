@@ -1,0 +1,74 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Share! a book{% endblock title %}
+
+{% block style %}
+	<link href="{% static "css/jquery-ui.min.css" %}" rel="stylesheet" type="text/css">
+{% endblock style %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<form id="modal_add_book" role="form" action="{% url 'book_add' %}" method="POST" enctype="multipart/form-data" accept-charset="utf-8">{% csrf_token %}
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<h4>Share! a book</h4>
+						</div>
+						<div class="panel-body">
+							{% if errors.title %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="title">Title</label>
+							    <input class="form-control" type="text" id="title" name="title" value="{{request.POST.title}}" placeholder="Title">
+						  	</div>
+						  	{% if errors.authors_str %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="authors_str">Author(s)</label>
+							    <input class="form-control" type="text" id="authors_str" name="authors_str" value="{{request.POST.authors_str}}" placeholder="Enter authors of this book separated by a comma">
+						  	</div>
+						  	{% if errors.tags_str %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="tags_str">Tags</label>
+							    <input class="form-control" type="text" id="tags_str" name="tags_str" value="{{request.POST.tags_str}}" placeholder="Enter tags for this book separated by a comma">
+						  	</div>
+						  	{% if errors.pdf %}
+								<div class="form-group alert alert-danger">
+					    	{% else %}
+					    		<div class="form-group">
+						    {% endif %}
+							    <label for="pdf">PDF file</label>
+							    <input class="form-control btn btn-default" type="file" id="pdf" name="pdf" value="{{request.POST.pdf}}" placeholder="">
+						  	</div>
+						  	<hr>
+						  	<div class="form-group pull-right">
+						  		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button type="submit" class="btn btn-success" id="cmd_share" >Share!</button>
+						  	</div>
+						</div>
+						
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</form>
+		</div>
+	</div>
+	{% else %}
+		<h4>You have to be authenticated for commenting.</h4>
+	{% endif %}
+
+{% endblock content %}
+
+{% block script %}
+	<script src="{% static "js/jquery-ui.min.js" %}" type="text/javascript"></script>
+	<script src="{% static "js/book/add.js" %}" type="text/javascript"></script>
+{% endblock script %}
+

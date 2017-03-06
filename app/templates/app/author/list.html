@@ -1,0 +1,26 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Authors{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+
+	<div class="row">
+		<h2>Authors</h2>
+		<ul>
+			{% for author in authors %}
+				<li>
+					<a href="{% url 'author' author.pk %}" title="{{ author }}">{{ author }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

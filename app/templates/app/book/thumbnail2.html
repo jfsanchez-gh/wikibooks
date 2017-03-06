@@ -1,0 +1,62 @@
+{% load static %}
+<div class="thumbnail">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="{% url 'book_details' book.pk %}" title="{{book.title}}">
+						<img src="{% static "img/cover.jpg" %}" alt="cover" style="width: 100%; height=100%;">
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<i class="glyphicon glyphicon-upload"></i>
+					<span>{{ book.pub_date|date:'F j, Y' }} by 
+						<a href="{% url 'user' book.user.pk %}" title="{{ book.user }}">
+							<strong>
+								{{ book.user }}
+							</strong>
+						</a>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<p>
+				<h3>{{ book.title }}</h3>
+			</p>
+			<p>
+				{% with authors=book.authors.all %}
+					<p>
+					{% if authors.count > 1 %}
+						<strong>Authors: </strong>
+					{% else %}
+						<strong>Author: </strong>
+					{% endif %}
+						{% include "app/book/authors.html" %}
+					</p>
+				{% endwith %}
+			</p>
+			<h5><strong>Abstract: </strong>
+				<p style="text-align: justify;">
+					{{ book.abstract }}
+				</p>
+			</h5>
+			<p>
+				<i class="glyphicon glyphicon-star star-icon"></i>
+				<span class="badge star-text">{{ book.votes }}</span>
+			</p>
+			<p>
+				{% include "app/book/tags.html" %}
+			</p>
+			<p>
+				<a href="{% url 'book_get' book.pk %}" class="btn btn-primary" title="">
+					<i class="glyphicon glyphicon-download download-icon"></i>
+					Download
+					<span class="badge download-text">{{ book.downloads }}</span>
+				</a>
+			</p>
+		</div>
+	</div>
+</div>

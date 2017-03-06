@@ -1,0 +1,25 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block content %}
+
+	<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2>Congratulations</h2>
+		<p>
+			Your user has been registered successfully and an verification email was sended to: 
+			<a href="mailto:{{ user.email }}" title="">{{ user.email }}</a>
+		</p>
+		</div>
+	</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

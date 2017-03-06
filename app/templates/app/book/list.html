@@ -1,0 +1,38 @@
+{% load static %}
+{% if books %}
+	{% for book in books %}
+		{% include "app/book/thumbnail2.html" %}
+	{% endfor %}
+	<hr>
+	<ul class="pager">
+		
+		
+	</ul>
+	<div class="pager">
+        {% if books.has_previous %}
+        	<li>
+            {% if request.GET.q %}
+                <a href="?q={{ request.GET.q }}&amp;page={{ books.previous_page_number }}">&laquo;</a>
+            {% else %}
+        		<a href="?page={{ books.previous_page_number }}">&laquo;</a>
+            {% endif %}
+    		</li>
+        {% endif %}
+
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
+        </span>
+
+        {% if books.has_next %}
+        	<li>
+            {% if request.GET.q %}
+                <a href="?q={{ request.GET.q }}&amp;page={{ books.next_page_number }}">&raquo;</a>
+            {% else %}
+        		<a href="?page={{ books.next_page_number }}">&raquo;</a>
+            {% endif %}
+    		</li>
+        {% endif %}
+	</div>
+{% else %}
+	<h4>There's not available books.</h4>
+{% endif %}

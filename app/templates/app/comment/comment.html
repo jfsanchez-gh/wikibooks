@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+    	<a href="{% url 'user' comment.user.pk %}" title="{{ comment.user }}">
+    		<strong>{{comment.user}}</strong>
+    	</a>
+    	sed:
+	</h3>
+  </div>
+  <div class="panel-body">
+    {{comment|linebreaks}}
+  </div>
+</div>

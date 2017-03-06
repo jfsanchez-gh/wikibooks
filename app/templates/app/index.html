@@ -1,0 +1,36 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+	{% include "app/search/search_form.html" %}
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h1>Share! your books</h1>
+				<p class="lead">... and also <strong>search</strong> for your favorites one.</p>
+				<p class="lead">with <strong>{{ book_count }}</strong> books and growing up!</p>
+				<p>
+					<a class="btn btn-lg btn-success" href="{% url 'book_add' %}">
+						<i class="glyphicon glyphicon-upload"></i> Share!
+					</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<div class="row marketing">
+		<h2 class="text-center">Latest books</h2>
+		{% include "app/book/list.html" %}
+	</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}
